@@ -29,7 +29,6 @@ def load_data(filename):
 def split_data(x, y, tr_fraction=0.5):
     n_samples = y.size
     n_tr = int(n_samples * tr_fraction)
-
     idx = np.array(range(0, n_samples))
     np.random.shuffle(idx)
 
@@ -43,3 +42,22 @@ def split_data(x, y, tr_fraction=0.5):
     y_ts = y[ts_idx]
 
     return x_tr, y_tr, x_ts, y_ts
+
+def load_mnist(csv_filename: str):
+    """
+    Load the MNIST dataset from a csv file
+
+    Parameters
+    ----------
+    csv_filename : string
+        Filename to be loaded.
+
+    Returns
+    -------
+    X : ndarray
+        the data matrix.
+
+    y : ndarray
+        the labels of each sample.
+    """
+    return load_data(csv_filename)
