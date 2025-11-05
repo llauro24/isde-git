@@ -35,7 +35,28 @@ class NMC(object):
         return self._class_labels
 
     def fit(self, xtr, ytr):
-        pass
+        '''
+        Compute the averege of each centroid
+        '''
+        # Identify unique class labels
+        self._class_labels = np.unique(ytr)
+
+        # Number of classes is the number of unique labels
+        n_classes = self._class_labels.size
+
+        # Number of features is the number of columns in xtr
+        n_features = xtr.shape[1]
+
+        # Initialize centroids array
+        self._centroids = np.zeros((n_classes, n_features))
+
+        # Compute centroids for each class
+        for idx, label in enumerate(self._class_labels):
+            # Get all samples belonging to the current class
+            class_samples = xtr[ytr == label]
+
+            # Compute the mean of the samples for the current class
+            self._centroids[idx] = np.mean(class_samples, axis=0)
 
     def predict(self, xts):
         pass
