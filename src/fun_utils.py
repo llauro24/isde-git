@@ -27,11 +27,21 @@ def load_data(filename):
 
 
 def split_data(x, y, tr_fraction=0.5):
-    """
-    Split the data x, y into two random subsets
+    n_samples = y.size
+    n_tr = int(n_samples * tr_fraction)
+    idx = np.array(range(0, n_samples))
+    np.random.shuffle(idx)
 
-    """
-    pass
+    tr_idx = idx[:n_tr]
+    ts_idx = idx[n_tr:]
+
+    x_tr = x[tr_idx, :]
+    y_tr = y[tr_idx]
+
+    x_ts = x[ts_idx, :]
+    y_ts = y[ts_idx]
+
+    return x_tr, y_tr, x_ts, y_ts
 
 def load_mnist(csv_filename: str):
     """
